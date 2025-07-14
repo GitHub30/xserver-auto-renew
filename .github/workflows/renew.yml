@@ -1,0 +1,21 @@
+on:
+  schedule:
+    - cron: 0 15 * * *
+  push:
+  workflow_dispatch:
+
+jobs:
+  renew:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - run: |
+        sudo rm /usr/bin/google-chrome
+        echo 'exec /etc/alternatives/google-chrome "$@" --headless' | sudo tee /usr/bin/google-chrome
+        sudo chmod +x /usr/bin/google-chrome
+    - run: pip install -r requirements.txt
+    - run: python -m xserver-auto-renew.login && python -m xserver-auto-renew.main >> $GITHUB_STEP_SUMMARY
+      env:
+        ID_VPS: ${{ secrets.ID_VPS }}
+        USERNAME: ${{ secrets.USERNAME }}
+        PASSWORD: ${{ secrets.PASSWORD }}
