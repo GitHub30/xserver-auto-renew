@@ -132,3 +132,21 @@ You can combine both steps for fully automated operation:
 ```bash
 python -m xserver-auto-renew.login && python -m xserver-auto-renew.main
 ```
+
+## Automate with GitHub Actions
+
+### 1. Fork this repository
+
+https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo#forking-a-repository
+
+### 2. Set secrets ID_VPS, USERNAME, PASSWORD
+
+`Settings` > `Secrets and variables` > `Actions` > `Repository secrets` > `New repository secret`
+
+https://docs.github.com/en/actions/how-tos/security-for-github-actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-an-environment
+
+### 3. Run a workflow
+
+`Actions`
+
+![](https://user-images.githubusercontent.com/17570430/224348663-7a50746f-73ae-44c2-b61f-98d8522a1690.png)
